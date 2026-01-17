@@ -2551,6 +2551,7 @@ t8sClQAAACV0RVh0ZGF0ZTptb2RpZnkAMjAxNS0wNC0wOFQwODowMzowNC0wNDowMMaWuikAAAAA
 SUVORK5CYII="
 
 #Ajout des icones sur le home de l'utilisateur
+mkdir -p ~/.local/share/icons/
 echo "${PNG_B64_DOFUS}" | base64 --decode > ~/.local/share/icons/dofus.png
 echo "${PNG_B64_ANKAMALAUNCHER}" | base64 --decode > ~/.local/share/icons/ankamalauncher.png
 
