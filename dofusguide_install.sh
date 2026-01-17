@@ -63,9 +63,11 @@ sudo apt update
 sudo apt install -y flatpak
 sudo apt install -y gnome-software-plugin-flatpak
 
-# Patch fuse 
-sed -e '11i   /run/mount/utab.lock rwk,' /etc/apparmor.d/fusermount3
-sudo apparmor_parser -r /etc/apparmor.d/fusermount3
+if [ "$(cat /etc/apparmor.d/fusermount3 | grep utab.lock | wc -l)" -lt 1];then
+  # Patch fuse 
+  sed -e '11i   /run/mount/utab.lock rwk,' /etc/apparmor.d/fusermount3
+  sudo apparmor_parser -r /etc/apparmor.d/fusermount3
+fi
 
 # Ajout des repos flathub
 flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
