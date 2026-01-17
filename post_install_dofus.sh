@@ -2569,7 +2569,7 @@ NoDisplay=true""" > $HOME/.local/share/applications/dofus-icon.desktop
 echo """[Desktop Entry]
 Name=AnkamaLauncher
 Comment=
-Exec=$HOME/Applications/AnkamaLauncher/AnkamaLauncher.AppImage
+Exec=$HOME/Applications/AnkamaLauncher/AnkamaLauncher.AppImage --no-sandbox
 Icon=$HOME/.local/share/icons/ankamalauncher.png
 Terminal=false
 Type=Application
