@@ -2588,3 +2588,5 @@ wget -q -O $HOME/Applications/AnkamaLauncher/AnkamaLauncher.AppImage https://lau
 #On le rend executable
 chmod +x $HOME/Applications/AnkamaLauncher/AnkamaLauncher.AppImage
 
+#Installation de libfuse pour pouvoir lancer les .AppImage
+sudo apt update && sudo apt install -y libfuse2
