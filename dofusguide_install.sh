@@ -63,7 +63,7 @@ sudo apt update
 sudo apt install -y flatpak
 sudo apt install -y gnome-software-plugin-flatpak
 flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
-flatpak install -y bottles
+flatpak install flathub com.usebottles.bottles
 
 # Création de l'environnement wine DofusGuide
 flatpak run --command=bottles-cli com.usebottles.bottles new -n DofusGuide -t gaming
