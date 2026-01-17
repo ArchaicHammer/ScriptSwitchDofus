@@ -63,7 +63,7 @@ sudo apt update
 sudo apt install -y flatpak
 sudo apt install -y gnome-software-plugin-flatpak
 
-if [ "$(cat /etc/apparmor.d/fusermount3 | grep utab.lock | wc -l)" -lt 1];then
+if [ "$(cat /etc/apparmor.d/fusermount3 | grep utab.lock | wc -l)" -lt 1 ];then
   # Patch fuse 
   sed -e '11i   /run/mount/utab.lock rwk,' /etc/apparmor.d/fusermount3
   sudo apparmor_parser -r /etc/apparmor.d/fusermount3
@@ -71,7 +71,10 @@ fi
 
 # Ajout des repos flathub
 flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+flatpak install flathub org.gnome.Platform//49
+flatpak install flathub org.gnome.Platform.Locale//49
 flatpak install flathub com.usebottles.bottles
+flatpak run com.usebottles.bottles --version
 
 # Création de l'environnement wine DofusGuide
 flatpak run --command=bottles-cli com.usebottles.bottles new --bottle-name DofusGuide --environment gaming
