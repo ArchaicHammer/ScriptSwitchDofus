@@ -62,24 +62,30 @@ DEPS_DOFUSGUIDE_WINE=(
 sudo apt update
 sudo apt install -y flatpak
 sudo apt install -y gnome-software-plugin-flatpak
+
+# Patch fuse 
+sed -e '11i   /run/mount/utab.lock rwk,' /etc/apparmor.d/fusermount3
+sudo apparmor_parser -r /etc/apparmor.d/fusermount3
+
+# Ajout des repos flathub
 flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 flatpak install flathub com.usebottles.bottles
 
 # Création de l'environnement wine DofusGuide
-flatpak run --command=bottles-cli com.usebottles.bottles new -n DofusGuide -t gaming
+flatpak run --command=bottles-cli com.usebottles.bottles new --bottle-name DofusGuide --environment gaming
 
 # Installation de toutes les dépendances
 for ENV_DEPS in "${DEPS_DOFUSGUIDE_WINE[@]}"; do
-    flatpak run --command=bottles-cli install-deps -b DofusGuide -d "$ENV_DEPS"
+    flatpak run --command=bottles-cli install-deps --bottle-name DofusGuide --dependency "$ENV_DEPS"
 done
 
 # Désactivation de la carte graphique dédiée dans l'env wine, de vkd3d et dxvk
-flatpak run --command=bottles-cli com.usebottles.bottles settings -b DofusGuide -s vkd3d -v false
-flatpak run --command=bottles-cli com.usebottles.bottles settings -b DofusGuide -s discrete_gpu -v false
-flatpak run --command=bottles-cli com.usebottles.bottles settings -b DofusGuide -s dxvk -v false
+flatpak run --command=bottles-cli com.usebottles.bottles settings --bottle-name DofusGuide --setting vkd3d --value false
+flatpak run --command=bottles-cli com.usebottles.bottles settings --bottle-name DofusGuide --setting discrete_gpu --value false
+flatpak run --command=bottles-cli com.usebottles.bottles settings --bottle-name DofusGuide --setting dxvk --value false
 
 # Téléchargement de DofusGuide
 wget -q -O $HOME/setupDofusGuide.exe https://dofusguide.fr/uploads/windows/setup.exe
 
 # On lance l'installation du launcher officiel de DofusGuide
-flatpak run --command=bottles-cli com.usebottles.bottles run -b DofusGuide -e $HOME/setupDofusGuide.exe
+flatpak run --command=bottles-cli com.usebottles.bottles run --bottle-name DofusGuide --executable $HOME/setupDofusGuide.exe
