@@ -2574,7 +2574,8 @@ Icon=$HOME/.local/share/icons/ankamalauncher.png
 Terminal=false
 Type=Application
 StartupWMClass="Ankama Launcher"
-Categories=Game;""" > $HOME/.local/share/applications/ankamalauncher.desktop
+Categories=Game;
+NoDisplay=false""" > $HOME/.local/share/applications/ankamalauncher.desktop
 
 chmod +x $HOME/.local/share/applications/dofus-icon.desktop
 chmod +x $HOME/.local/share/applications/ankamalauncher.desktop
@@ -2590,3 +2591,5 @@ chmod +x $HOME/Applications/AnkamaLauncher/AnkamaLauncher.AppImage
 
 #Installation de libfuse pour pouvoir lancer les .AppImage
 sudo apt update && sudo apt install -y libfuse2
+
+update-desktop-database ~/.local/share/applications/
