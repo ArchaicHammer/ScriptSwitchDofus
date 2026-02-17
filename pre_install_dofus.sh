@@ -10657,10 +10657,10 @@ mkdir -p $HOME/Applications/Ganymede/
 
 #Téléchargement du launcher
 wget -q -O $HOME/Applications/AnkamaLauncher/AnkamaLauncher.AppImage https://launcher.cdn.ankama.com/installers/production/Dofus%203.0-Setup-x86_64.AppImage
-wget -q -O $HOME/Applications/AnkamaLauncher/Ganymede.AppImage https://github.com/GanymedeTeam/ganymede-app/releases/latest/download/Ganymede_amd64.AppImage
+wget -q -O $HOME/Applications/Ganymede/Ganymede.AppImage https://github.com/GanymedeTeam/ganymede-app/releases/latest/download/Ganymede_amd64.AppImage
 #On le rend executable
 chmod +x $HOME/Applications/AnkamaLauncher/AnkamaLauncher.AppImage
-chmod +x $HOME/Applications/AnkamaLauncher/Ganymede.AppImage
+chmod +x $HOME/Applications/Ganymede/Ganymede.AppImage
 
 #Installation de libfuse pour pouvoir lancer les .AppImage
 sudo apt update && sudo apt install -y libfuse2
